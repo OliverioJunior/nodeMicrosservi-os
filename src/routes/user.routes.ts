@@ -16,11 +16,7 @@ import userRepository from "../repositories/user.repository";
       res.status(StatusCodes.OK).send(user)
 
  } catch(error) {
-    if(error instanceof DatabaseError){
-       res.sendStatus(StatusCodes.BAD_REQUEST);
-   } else {
-      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-   }
+    next(error);
  }
  })
  usersRoute.post("/users",async (req: Request, res: Response, next: NextFunction ) => {
